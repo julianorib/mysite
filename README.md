@@ -1,12 +1,12 @@
 # mysite test
 
 ```
-python3 -m venv .venv
+python3 -m venv src/.venv
 
-source .venv/bin/activate
+source src/.venv/bin/activate
 
 pip install flask
 
-docker image build -t julianorib/mysite:v1.0
+docker image build -t julianorib/mysite:v2.0
 
 ```

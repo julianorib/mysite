@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mysite-deployment
+  namespace: temp
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: mysite
+  template: 
+    metadata:
+      labels:
+        app: mysite
+    spec: 
+      containers:
+        - name: mysite
+          image: julianorib/mysite:v2.0
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysite-service
+  namespace: temp
+spec:
+  selector:
+    app: mysite
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer
