@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata: 
   name: mysite-deployment
-  namespace: temp
 spec:
   replicas: 1
   selector: 
@@ -17,18 +16,47 @@ spec:
         - name: mysite
           image: julianorib/mysite:v2.0
           ports:
-            - containerPort: 8080
-          imagePullPolicy: Always
+            - name: web
+              containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: mysite-service
-  namespace: temp
 spec:
   selector:
     app: mysite
   ports:
-    - port: 80
+    - name: web
+      port: 80
       targetPort: 8080
   type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysite-prom
+spec:
+  type: ClusterIP
+  selector:
+    app: mysite
+  ports:
+    - name: http-web
+      port: 8080
+      targetPort: http-web
+  type: ClusterIP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mysite
+spec:
+  endpoints:
+    - port: http-web
+      path: /metrics
+  namespaceSelector:
+    matchNames:
+    - mysite2
+  selector:
+    matchLabels:
+      app: mysite

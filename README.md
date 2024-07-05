@@ -7,6 +7,6 @@ source src/.venv/bin/activate
 
 pip install flask
 
-docker image build -t julianorib/mysite:v2.0
+docker image build -t julianorib/mysite:v2.0 .
 
 ```
