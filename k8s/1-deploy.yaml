@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mysite-deployment
+  labels:
+    release: monitoring
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: mysite
+  template: 
+    metadata:
+      labels:
+        app: mysite
+    spec: 
+      containers:
+        - name: mysite
+          image: julianorib/mysite:v2.0
+          ports:
+            - name: http-web
+              containerPort: 8080
