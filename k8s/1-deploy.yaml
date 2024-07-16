@@ -11,11 +11,6 @@ spec:
     metadata:
       labels:
         app: mysite
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/path: /metrics
-        prometheus.io/port: "8080"
-        prometheus.io/interval: '30s'
     spec: 
       containers:
         - name: mysite
