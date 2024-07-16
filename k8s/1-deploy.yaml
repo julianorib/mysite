@@ -15,11 +15,11 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/path: /metrics
         prometheus.io/port: "8080"
-        prometheus.io/interval: '5s'
+        prometheus.io/interval: '30s'
     spec: 
       containers:
         - name: mysite
           image: julianorib/mysite:v2.0
           ports:
             - name: http-web
-              containerPort: 8080
+              containerPort: 8080 
