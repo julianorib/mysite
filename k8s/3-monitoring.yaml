@@ -1,26 +1,13 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-<<<<<<< HEAD
-  name: mysite-monitor
-  labels:
-    release: monitoring
-spec:
-  endpoints:
-    - port: http-web
-      path: /metrics
-  selector:
-    matchLabels:
-      app: mysite
-=======
   name: mysite
   labels:
     release: monitoring
 spec:
-  selector:
-    matchLabels:
-      app: mysite
   endpoints:
     - port: http-web
       path: /metrics
->>>>>>> 131b1e19431bf65bafc8ba67246e35f07e09b897
+  selector:
+    matchLabels:
+      app: mysite

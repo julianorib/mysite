@@ -1,13 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-<<<<<<< HEAD
-  name: mysite-deployment
+  name: mysite
   labels:
     release: monitoring
-=======
-  name: mysite
->>>>>>> 131b1e19431bf65bafc8ba67246e35f07e09b897
 spec:
   replicas: 1
   selector: 
