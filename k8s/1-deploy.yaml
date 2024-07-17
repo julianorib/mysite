@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata: 
   name: mysite-deployment
-  # labels:
-  #   release: monitoring
+  labels:
+    release: monitoring
 spec:
   replicas: 1
   selector: 
@@ -13,11 +13,6 @@ spec:
     metadata:
       labels:
         app: mysite
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/path: /metrics
-        prometheus.io/port: "8080"
-        prometheus.io/interval: '5s'
     spec: 
       containers:
         - name: mysite
