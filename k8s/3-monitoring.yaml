@@ -3,11 +3,11 @@ kind: ServiceMonitor
 metadata:
   name: mysite
   labels:
-    release: monitoring
+    release: prometheus
 spec:
-  selector:
-    matchLabels:
-      app: mysite
   endpoints:
     - port: http-web
       path: /metrics
+  selector:
+    matchLabels:
+      app: mysite
