@@ -3,7 +3,7 @@ kind: Deployment
 metadata: 
   name: mysite
 spec:
-  replicas: 1
+  replicas: 4
   selector: 
     matchLabels:
       app: mysite
@@ -17,4 +17,11 @@ spec:
           image: julianorib/mysite:v2.0
           ports:
             - name: http-web
-              containerPort: 8080 
+              containerPort: 8080
+          volumeMounts:
+          - name: vol
+            mountPath: /opt
+      volumes:
+        - name: vol
+          persistentVolumeClaim:
+            claimName: mysite
