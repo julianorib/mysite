@@ -7,7 +7,7 @@ Estudos sobre métricas e traces.
 - Traces
 - *Logs 
 
-Em desenvolvimento.
+* Em desenvolvimento.
 
 ## Como usar
 
