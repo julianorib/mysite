@@ -17,10 +17,27 @@ services:
       - OTEL_EXPORTER_OTLP_INSECURE=true
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
       - OTEL_TRACES_EXPORTER=otlp
+      - DB_HOST=db
+      - DB_USER=mysite
+      - DB_PASSWORD=password123
+      - DB_NAME=mysite
       
     depends_on:
       - jaeger
       - prometheus
+      - db
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=password123
+      - MARIADB_USER=mysite
+      - MARIADB_PASSWORD=password123
+      - MARIADB_DATABASE=mysite
+    ports:
+      - "3306:3306"
+
 
   prometheus:
     image: prom/prometheus:latest
@@ -43,4 +60,3 @@ services:
 
 volumes:
   grafana-storage:
-
